@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+
+{% comment  %}
+###INDEX PAGE###
+{% endcomment %}
+
+<div class="htmlPageContent">
+    <h2>Welcome to Progety</h2>
+<p>Where every word has a story to tell</p>
+
+  <hr>
+
+  <h3>Latest Terms</h3>
+  <%if termDictionary%>
+  <% for term in termDictionary%>
+    <ul class="newTerms">
+  <li>{{term}}</li>
+    <% else %>
+    <p>No New Terms</p>
+</ul>
+</div>
+
+{% endblock  %}

@@ -1,0 +1,21 @@
+{% extends './base.html' %} 
+{% comment %} ###INDEX PAGE### {% endcomment %}
+
+{% block content %}
+
+    <form action="{% url 'progety:addTerm' term.id %}" method="post">
+    {% csrf_token %}
+    
+    <input type="submit" value="Vote" />
+    </form>
+
+{% endblock  %}
+
+
+
+{%comment%}
+{% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ etymology.id }}" />
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    {% endfor %}
+{% endcomment %}

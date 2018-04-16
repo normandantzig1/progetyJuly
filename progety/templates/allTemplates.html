@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+
+
+
+
+______________________
+
+{% comment  %}
+###HEADER###
+{% endcomment %}
+<div class="htmlPageHeader">
+
+<h1>PROGETY</h1>
+
+</div>
+
+{% comment  %}
+###FOOTER###
+{% endcomment %}
+
+<div class="htmlPageFooter">
+    <div>Copyright Norman Danzig</div>
+</div>
+
+
+{% comment  %}
+###SEARCH PAGE###
+{% endcomment %}
+
+<div class="htmlPageContent">
+
+    <%if termDictionary%>
+    {{termDictionary|length}}  entries found
+
+  <h2>{{termDictionary.term_name}}</h1>
+  <p>{{termDictionary.etymology_text}}</p>  
+    
+
+  <% for term in termDictionary%>
+    <ul class="searchTerms">
+  <li>
+        <h2>{{term.term_name}}</h1>
+        <p>{{term.etymology_text}}</p> 
+    </li>
+    <% else %>
+    <p>No terms found for search term</p>
+</ul>
+    
+</div>
+
+{% comment  %}
+###INDEX PAGE###
+{% endcomment %}
+
+<div class="htmlPageContent">
+    <h2>Welcome to Progety</h2>
+<p>Where every word has a story to tell</p>
+
+  <hr>
+
+  <h3>Latest Terms</h3>
+  <%if termDictionary%>
+  <% for term in termDictionary%>
+    <ul class="newTerms">
+  <li>{{term}}</li>
+    <% else %>
+    <p>No New Terms</p>
+</ul>
+</div>
