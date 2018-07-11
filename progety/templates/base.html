@@ -1,9 +1,14 @@
+{% load static%}
+
 <header>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
    
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>    
  <!--link rel="stylesheet" type="text/css" href="mystyle.css">-->
+
+ <link rel="stylesheet" type="text/css" href="{% static 'progety/themes/charming/css/' %}" />
+ static/
 <style>
 .footer {
   position: relative;
@@ -32,6 +37,9 @@
 
 </div>
 
+<a href="{% url 'post_new_term' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+
+
 {% block content %}
 
 {% endblock %}
@@ -42,6 +50,6 @@
 ###FOOTER###
 {% endcomment %}
 
-<footer class="footer  text-center">
+<footer class="footer  htmlPageFooter text-center">
     <div>Copyright Norman Danzig</div>
 </footer>

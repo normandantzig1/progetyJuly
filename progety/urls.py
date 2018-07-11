@@ -9,6 +9,8 @@ urlpatterns = [
     path('', views.home, name='home'), # home 
     #progety/term/someTerm
     path('<term>/', views.term, name='term'), # the term
+    path('postNewTerm', views.post_new_term, name='post_new_term'),
+
 
 ]
 

@@ -1,10 +1,51 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .forms import PostForm, EtymologyForm
 from django.http import HttpResponse
+from django.utils import timezone
 
-from .models import Term
+
+from .models import Term, Etymology
+
+def post_new_term(request):
+
+    if request.method == "POST":
+        t_form = PostForm(request.POST)
+        e_form = [EtymologyForm(request.POST, prefix=str(x), instance=Etymology()) for x in range(0,4)]
+        if t_form.is_valid() and all([cf.is_valid() for cf in e_form]):
+            new_term = t_form.save(commit=False)
+            for cf in e_form:
+                new_etymology = cf.save(commit=False)
+                new_etymology.term = new_term
+                new_etymology.save()
+            return render('home')
+        
+    else:
+        e_form = EtymologyForm(request.POST)
+        t_form = PostForm(request.POST)
+        
+    return render(request, 'term_edit.html', {'t_form': t_form, 'e_form': e_form})
+
+""" ###############WORKING FORM
+def post_new_term(request):
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            term = form.save(commit=False)
+            #post.author = request.user
+            term.term_pub_date = timezone.now()
+            term.save()
+            #return redirect('post_detail', pk=Term.pk)
+            return redirect('home')
+    else:
+        form = PostForm()
+    return render(request, 'term_edit.html', {'form': form})"""
 
 
+
+
+    ##form = PostForm()
+    ##return render(request, 'term_edit.html', {'form': form})
 
 def index(request):
     return render(request, 'progety/templates/home.html')
